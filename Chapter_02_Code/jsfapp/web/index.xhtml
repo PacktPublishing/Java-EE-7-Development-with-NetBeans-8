@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <title>Registration</title>
+        <h:outputStylesheet library="css" name="styles.css"/>
+    </h:head>
+    <h:body>
+        <h3>Registration Page</h3>
+        <h:form>
+            <h:panelGrid columns="3"
+                         columnClasses="rightalign,leftalign,leftalign">
+                <h:outputLabel value="Salutation: " for="salutation"/>
+                <h:selectOneMenu id="salutation" label="Salutation"
+                                 value="#{registrationBean.salutation}" >
+                    <f:selectItem itemLabel="" itemValue=""/>
+                    <f:selectItem itemLabel="Mr." itemValue="MR"/>
+                    <f:selectItem itemLabel="Mrs." itemValue="MRS"/>
+                    <f:selectItem itemLabel="Miss" itemValue="MISS"/>
+                    <f:selectItem itemLabel="Ms" itemValue="MS"/>
+                    <f:selectItem itemLabel="Dr." itemValue="DR"/>
+                </h:selectOneMenu>
+                <h:message for="salutation"/>
+
+                <h:outputLabel value="First Name:" for="firstName"/>
+                <h:inputText id="firstName" label="First Name"
+                             required="true"
+                             value="#{registrationBean.firstName}" />
+                <h:message for="firstName" />
+                <h:outputLabel value="Last Name:" for="lastName"/>
+                <h:inputText id="lastName" label="Last Name"
+                             required="true"  
+                             value="#{registrationBean.lastName}" />
+                <h:message for="lastName" />
+
+                <h:outputLabel for="age" value="Age:"/>
+                <h:inputText id="age" label="Age" size="2"
+                             value="#{registrationBean.age}"/>
+                <h:message for="age"/>
+
+                <h:outputLabel value="Email Address:" for="email"/>
+                <h:inputText id="email" label="Email Address"
+                             required="true"
+                             p:placeholder="username@example.com"
+                             value="#{registrationBean.email}">
+                    <f:validator validatorId="emailValidator"/>
+                </h:inputText>
+                <h:message for="email" />
+
+                <h:panelGroup/>
+                <h:commandButton id="register" value="Register"
+                                 action="confirmation" />
+            </h:panelGrid>
+        </h:form>
+    </h:body>
+</html>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AddressEditDlg" widgetVar="AddressEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditAddressTitle}">
+            <h:form id="AddressEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{addressController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditAddressLabel_addressId}" for="addressId" />
+                        <p:inputText id="addressId" value="#{addressController.selected.addressId}" title="#{bundle.EditAddressTitle_addressId}" required="true" requiredMessage="#{bundle.EditAddressRequiredMessage_addressId}"/>
+                        <p:outputLabel value="#{bundle.EditAddressLabel_addrLine1}" for="addrLine1" />
+                        <p:inputText id="addrLine1" value="#{addressController.selected.addrLine1}" title="#{bundle.EditAddressTitle_addrLine1}" />
+                        <p:outputLabel value="#{bundle.EditAddressLabel_addrLine2}" for="addrLine2" />
+                        <p:inputText id="addrLine2" value="#{addressController.selected.addrLine2}" title="#{bundle.EditAddressTitle_addrLine2}" />
+                        <p:outputLabel value="#{bundle.EditAddressLabel_city}" for="city" />
+                        <p:inputText id="city" value="#{addressController.selected.city}" title="#{bundle.EditAddressTitle_city}" />
+                        <p:outputLabel value="#{bundle.EditAddressLabel_zip}" for="zip" />
+                        <p:inputText id="zip" value="#{addressController.selected.zip}" title="#{bundle.EditAddressTitle_zip}" />
+                        <p:outputLabel value="#{bundle.EditAddressLabel_addressType}" for="addressType" />
+                        <p:selectOneMenu id="addressType" value="#{addressController.selected.addressType}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{addressTypeController.itemsAvailableSelectOne}"
+                                           var="addressTypeItem"
+                                           itemValue="#{addressTypeItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditAddressLabel_customer}" for="customer" />
+                        <p:selectOneMenu id="customer" value="#{addressController.selected.customer}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{customerController.itemsAvailableSelectOne}"
+                                           var="customerItem"
+                                           itemValue="#{customerItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditAddressLabel_usState}" for="usState" />
+                        <p:selectOneMenu id="usState" value="#{addressController.selected.usState}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{usStateController.itemsAvailableSelectOne}"
+                                           var="usStateItem"
+                                           itemValue="#{usStateItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{addressController.update}" value="#{bundle.Save}" update="display,:AddressListForm:datalist,:growl" oncomplete="handleSubmit(args, 'AddressEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="AddressEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

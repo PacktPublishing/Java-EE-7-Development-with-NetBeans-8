@@ -1,0 +1,15 @@
+-profile-pre72
+clean
+clean-ear
+compile
+compile-jsps
+debug
+default
+dist
+dist-ear
+javadoc
+profile
+run
+test
+test-single
+test-single-method

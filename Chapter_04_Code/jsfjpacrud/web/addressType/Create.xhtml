@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AddressTypeCreateDlg" widgetVar="AddressTypeCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateAddressTypeTitle}">
+            <h:form id="AddressTypeCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{addressTypeController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateAddressTypeLabel_addressTypeId}" for="addressTypeId" />
+                        <p:inputText id="addressTypeId" value="#{addressTypeController.selected.addressTypeId}" title="#{bundle.CreateAddressTypeTitle_addressTypeId}" required="true" requiredMessage="#{bundle.CreateAddressTypeRequiredMessage_addressTypeId}"/>
+                        <p:outputLabel value="#{bundle.CreateAddressTypeLabel_addressTypeCode}" for="addressTypeCode" />
+                        <p:inputText id="addressTypeCode" value="#{addressTypeController.selected.addressTypeCode}" title="#{bundle.CreateAddressTypeTitle_addressTypeCode}" />
+                        <p:outputLabel value="#{bundle.CreateAddressTypeLabel_addressTypeText}" for="addressTypeText" />
+                        <p:inputText id="addressTypeText" value="#{addressTypeController.selected.addressTypeText}" title="#{bundle.CreateAddressTypeTitle_addressTypeText}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{addressTypeController.create}" value="#{bundle.Save}" update="display,:AddressTypeListForm:datalist,:growl" oncomplete="handleSubmit(args,'AddressTypeCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="AddressTypeCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

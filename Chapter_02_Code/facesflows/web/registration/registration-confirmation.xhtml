@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Registration Confirmation</title>
+    </h:head>
+    <h:body>
+        <h3>Registration Confirmation</h3>
+        <h4>Personal Information</h4>
+        #{registrationBean.salutation}<br/>
+        #{registrationBean.firstName}<br/>
+        #{registrationBean.lastName}<br/>
+        #{registrationBean.age}<br/>
+        #{registrationBean.email}<br/>
+        <h4>Address Information</h4>
+        #{registrationBean.line1}<br/>
+        #{registrationBean.line2}<br/>
+        #{registrationBean.city}<br/>
+        #{registrationBean.state}<br/>
+        #{registrationBean.zip}<br/>
+        <h:form>
+            <h:panelGroup>
+                <h:commandButton value="Continue" action="registration-return"/>&#160;<h:commandButton value="Go Back" action="registration-pg2"/>
+            </h:panelGroup>
+        </h:form>
+
+    </h:body>
+</html>
+

@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+        <title>Facelets Template</title>
+    </h:head>
+
+    <h:body>
+
+
+        <div id="top" class="top">
+            <ui:insert name="top">
+                <h2>Welcome to our Site</h2>
+            </ui:insert>
+        </div>
+        <div>
+            <div id="left">
+                <ui:insert name="left">
+                    <h3>Links</h3>
+                    <ul>
+                        <li> 
+                            <h:outputLink value="http://www.packtpub.com">
+                                <h:outputText value="Packt Publishing"/> 
+                            </h:outputLink>
+                        </li>
+                        <li> 
+                            <h:outputLink value="http://www.ensode.net">
+                                <h:outputText value="Ensode.net"/> 
+                            </h:outputLink>
+                        </li>
+                        <li>
+                            <h:outputLink value="http://www.ensode.com">
+                                <h:outputText value="Ensode Technology, LLC"/> 
+                            </h:outputLink>
+                        </li>
+
+                        <li>
+                            <h:outputLink value="http://www.netbeans.org">
+                                <h:outputText value="NetBeans.org"/> 
+                            </h:outputLink>
+                        </li>
+                        <li>
+                            <h:outputLink value="http://www.glassfish.org">
+                                <h:outputText value="GlassFish.org"/> 
+                            </h:outputLink>
+                        </li>
+                        <li>
+                            <h:outputLink 
+                                value="http://www.oracle.com/technetwork/java/javaee/overview/index.html">
+                                <h:outputText value="Java EE"/> 
+                            </h:outputLink>
+                        </li>
+                        <li><h:outputLink value="http://www.oracle.com/technetwork/java/index.html">
+                                <h:outputText value="Java"/> 
+                            </h:outputLink></li>
+                    </ul>
+                </ui:insert>
+            </div>
+            <div id="content" class="left_content">
+                <ui:insert name="content">Content</ui:insert>
+            </div>
+        </div>
+    </h:body>
+
+</html>

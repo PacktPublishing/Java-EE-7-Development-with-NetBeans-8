@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TelephoneEditDlg" widgetVar="TelephoneEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditTelephoneTitle}">
+            <h:form id="TelephoneEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{telephoneController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditTelephoneLabel_telephoneId}" for="telephoneId" />
+                        <p:inputText id="telephoneId" value="#{telephoneController.selected.telephoneId}" title="#{bundle.EditTelephoneTitle_telephoneId}" required="true" requiredMessage="#{bundle.EditTelephoneRequiredMessage_telephoneId}"/>
+                        <p:outputLabel value="#{bundle.EditTelephoneLabel_telephoneNumber}" for="telephoneNumber" />
+                        <p:inputText id="telephoneNumber" value="#{telephoneController.selected.telephoneNumber}" title="#{bundle.EditTelephoneTitle_telephoneNumber}" />
+                        <p:outputLabel value="#{bundle.EditTelephoneLabel_customer}" for="customer" />
+                        <p:selectOneMenu id="customer" value="#{telephoneController.selected.customer}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{customerController.itemsAvailableSelectOne}"
+                                           var="customerItem"
+                                           itemValue="#{customerItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditTelephoneLabel_telephoneType}" for="telephoneType" />
+                        <p:selectOneMenu id="telephoneType" value="#{telephoneController.selected.telephoneType}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{telephoneTypeController.itemsAvailableSelectOne}"
+                                           var="telephoneTypeItem"
+                                           itemValue="#{telephoneTypeItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{telephoneController.update}" value="#{bundle.Save}" update="display,:TelephoneListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TelephoneEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TelephoneEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AddressCreateDlg" widgetVar="AddressCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateAddressTitle}">
+            <h:form id="AddressCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{addressController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateAddressLabel_addressId}" for="addressId" />
+                        <p:inputText id="addressId" value="#{addressController.selected.addressId}" title="#{bundle.CreateAddressTitle_addressId}" required="true" requiredMessage="#{bundle.CreateAddressRequiredMessage_addressId}"/>
+                        <p:outputLabel value="#{bundle.CreateAddressLabel_addrLine1}" for="addrLine1" />
+                        <p:inputText id="addrLine1" value="#{addressController.selected.addrLine1}" title="#{bundle.CreateAddressTitle_addrLine1}" />
+                        <p:outputLabel value="#{bundle.CreateAddressLabel_addrLine2}" for="addrLine2" />
+                        <p:inputText id="addrLine2" value="#{addressController.selected.addrLine2}" title="#{bundle.CreateAddressTitle_addrLine2}" />
+                        <p:outputLabel value="#{bundle.CreateAddressLabel_city}" for="city" />
+                        <p:inputText id="city" value="#{addressController.selected.city}" title="#{bundle.CreateAddressTitle_city}" />
+                        <p:outputLabel value="#{bundle.CreateAddressLabel_zip}" for="zip" />
+                        <p:inputText id="zip" value="#{addressController.selected.zip}" title="#{bundle.CreateAddressTitle_zip}" />
+                        <p:outputLabel value="#{bundle.CreateAddressLabel_addressType}" for="addressType" />
+                        <p:selectOneMenu id="addressType" value="#{addressController.selected.addressType}" >
+                            <f:selectItems value="#{addressTypeController.itemsAvailableSelectOne}"
+                                           var="addressTypeItem"
+                                           itemValue="#{addressTypeItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateAddressLabel_customer}" for="customer" />
+                        <p:selectOneMenu id="customer" value="#{addressController.selected.customer}" >
+                            <f:selectItems value="#{customerController.itemsAvailableSelectOne}"
+                                           var="customerItem"
+                                           itemValue="#{customerItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateAddressLabel_usState}" for="usState" />
+                        <p:selectOneMenu id="usState" value="#{addressController.selected.usState}" >
+                            <f:selectItems value="#{usStateController.itemsAvailableSelectOne}"
+                                           var="usStateItem"
+                                           itemValue="#{usStateItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{addressController.create}" value="#{bundle.Save}" update="display,:AddressListForm:datalist,:growl" oncomplete="handleSubmit(args,'AddressCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="AddressCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

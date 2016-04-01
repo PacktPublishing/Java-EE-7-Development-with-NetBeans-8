@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CustomerOrderEditDlg" widgetVar="CustomerOrderEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditCustomerOrderTitle}">
+            <h:form id="CustomerOrderEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{customerOrderController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditCustomerOrderLabel_customerOrderId}" for="customerOrderId" />
+                        <p:inputText id="customerOrderId" value="#{customerOrderController.selected.customerOrderId}" title="#{bundle.EditCustomerOrderTitle_customerOrderId}" required="true" requiredMessage="#{bundle.EditCustomerOrderRequiredMessage_customerOrderId}"/>
+                        <p:outputLabel value="#{bundle.EditCustomerOrderLabel_orderNumber}" for="orderNumber" />
+                        <p:inputText id="orderNumber" value="#{customerOrderController.selected.orderNumber}" title="#{bundle.EditCustomerOrderTitle_orderNumber}" />
+                        <p:outputLabel value="#{bundle.EditCustomerOrderLabel_orderDescription}" for="orderDescription" />
+                        <p:inputText id="orderDescription" value="#{customerOrderController.selected.orderDescription}" title="#{bundle.EditCustomerOrderTitle_orderDescription}" />
+                        <p:outputLabel value="#{bundle.EditCustomerOrderLabel_customer}" for="customer" />
+                        <p:selectOneMenu id="customer" value="#{customerOrderController.selected.customer}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{customerController.itemsAvailableSelectOne}"
+                                           var="customerItem"
+                                           itemValue="#{customerItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{customerOrderController.update}" value="#{bundle.Save}" update="display,:CustomerOrderListForm:datalist,:growl" oncomplete="handleSubmit(args, 'CustomerOrderEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CustomerOrderEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

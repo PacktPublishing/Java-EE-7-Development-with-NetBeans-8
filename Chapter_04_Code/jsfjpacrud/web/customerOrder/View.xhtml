@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CustomerOrderViewDlg" widgetVar="CustomerOrderViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewCustomerOrderTitle}">
+            <h:form id="CustomerOrderViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{customerOrderController.selected != null}">
+                        <h:outputText value="#{bundle.ViewCustomerOrderLabel_customerOrderId}"/>
+                        <h:outputText value="#{customerOrderController.selected.customerOrderId}" title="#{bundle.ViewCustomerOrderTitle_customerOrderId}"/>
+                        <h:outputText value="#{bundle.ViewCustomerOrderLabel_orderNumber}"/>
+                        <h:outputText value="#{customerOrderController.selected.orderNumber}" title="#{bundle.ViewCustomerOrderTitle_orderNumber}"/>
+                        <h:outputText value="#{bundle.ViewCustomerOrderLabel_orderDescription}"/>
+                        <h:outputText value="#{customerOrderController.selected.orderDescription}" title="#{bundle.ViewCustomerOrderTitle_orderDescription}"/>
+                        <h:outputText value="#{bundle.ViewCustomerOrderLabel_customer}"/>
+                        <h:outputText value="#{customerOrderController.selected.customer}" title="#{bundle.ViewCustomerOrderTitle_customer}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="CustomerOrderViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

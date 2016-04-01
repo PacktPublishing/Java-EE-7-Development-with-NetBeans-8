@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AppUserEditDlg" widgetVar="AppUserEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditAppUserTitle}">
+            <h:form id="AppUserEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{appUserController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditAppUserLabel_appUserId}" for="appUserId" />
+                        <p:inputText id="appUserId" value="#{appUserController.selected.appUserId}" title="#{bundle.EditAppUserTitle_appUserId}" required="true" requiredMessage="#{bundle.EditAppUserRequiredMessage_appUserId}"/>
+                        <p:outputLabel value="#{bundle.EditAppUserLabel_userName}" for="userName" />
+                        <p:inputText id="userName" value="#{appUserController.selected.userName}" title="#{bundle.EditAppUserTitle_userName}" />
+                        <p:outputLabel value="#{bundle.EditAppUserLabel_password}" for="password" />
+                        <p:inputText id="password" value="#{appUserController.selected.password}" title="#{bundle.EditAppUserTitle_password}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{appUserController.update}" value="#{bundle.Save}" update="display,:AppUserListForm:datalist,:growl" oncomplete="handleSubmit(args, 'AppUserEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="AppUserEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

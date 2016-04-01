@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ItemEditDlg" widgetVar="ItemEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditItemTitle}">
+            <h:form id="ItemEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{itemController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditItemLabel_itemId}" for="itemId" />
+                        <p:inputText id="itemId" value="#{itemController.selected.itemId}" title="#{bundle.EditItemTitle_itemId}" required="true" requiredMessage="#{bundle.EditItemRequiredMessage_itemId}"/>
+                        <p:outputLabel value="#{bundle.EditItemLabel_itemNumber}" for="itemNumber" />
+                        <p:inputText id="itemNumber" value="#{itemController.selected.itemNumber}" title="#{bundle.EditItemTitle_itemNumber}" />
+                        <p:outputLabel value="#{bundle.EditItemLabel_itemShortDesc}" for="itemShortDesc" />
+                        <p:inputText id="itemShortDesc" value="#{itemController.selected.itemShortDesc}" title="#{bundle.EditItemTitle_itemShortDesc}" />
+                        <p:outputLabel value="#{bundle.EditItemLabel_itemLongDesc}" for="itemLongDesc" />
+                        <p:inputText id="itemLongDesc" value="#{itemController.selected.itemLongDesc}" title="#{bundle.EditItemTitle_itemLongDesc}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{itemController.update}" value="#{bundle.Save}" update="display,:ItemListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ItemEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ItemEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

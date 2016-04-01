@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TelephoneViewDlg" widgetVar="TelephoneViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewTelephoneTitle}">
+            <h:form id="TelephoneViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{telephoneController.selected != null}">
+                        <h:outputText value="#{bundle.ViewTelephoneLabel_telephoneId}"/>
+                        <h:outputText value="#{telephoneController.selected.telephoneId}" title="#{bundle.ViewTelephoneTitle_telephoneId}"/>
+                        <h:outputText value="#{bundle.ViewTelephoneLabel_telephoneNumber}"/>
+                        <h:outputText value="#{telephoneController.selected.telephoneNumber}" title="#{bundle.ViewTelephoneTitle_telephoneNumber}"/>
+                        <h:outputText value="#{bundle.ViewTelephoneLabel_customer}"/>
+                        <h:outputText value="#{telephoneController.selected.customer}" title="#{bundle.ViewTelephoneTitle_customer}"/>
+                        <h:outputText value="#{bundle.ViewTelephoneLabel_telephoneType}"/>
+                        <h:outputText value="#{telephoneController.selected.telephoneType}" title="#{bundle.ViewTelephoneTitle_telephoneType}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="TelephoneViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

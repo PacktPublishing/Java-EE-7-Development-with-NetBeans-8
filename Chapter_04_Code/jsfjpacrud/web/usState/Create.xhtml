@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UsStateCreateDlg" widgetVar="UsStateCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateUsStateTitle}">
+            <h:form id="UsStateCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{usStateController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateUsStateLabel_usStateId}" for="usStateId" />
+                        <p:inputText id="usStateId" value="#{usStateController.selected.usStateId}" title="#{bundle.CreateUsStateTitle_usStateId}" required="true" requiredMessage="#{bundle.CreateUsStateRequiredMessage_usStateId}"/>
+                        <p:outputLabel value="#{bundle.CreateUsStateLabel_usStateCd}" for="usStateCd" />
+                        <p:inputText id="usStateCd" value="#{usStateController.selected.usStateCd}" title="#{bundle.CreateUsStateTitle_usStateCd}" required="true" requiredMessage="#{bundle.CreateUsStateRequiredMessage_usStateCd}"/>
+                        <p:outputLabel value="#{bundle.CreateUsStateLabel_usStateNm}" for="usStateNm" />
+                        <p:inputText id="usStateNm" value="#{usStateController.selected.usStateNm}" title="#{bundle.CreateUsStateTitle_usStateNm}" required="true" requiredMessage="#{bundle.CreateUsStateRequiredMessage_usStateNm}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{usStateController.create}" value="#{bundle.Save}" update="display,:UsStateListForm:datalist,:growl" oncomplete="handleSubmit(args,'UsStateCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="UsStateCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

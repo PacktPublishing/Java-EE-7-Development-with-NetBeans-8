@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AppUserViewDlg" widgetVar="AppUserViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewAppUserTitle}">
+            <h:form id="AppUserViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{appUserController.selected != null}">
+                        <h:outputText value="#{bundle.ViewAppUserLabel_appUserId}"/>
+                        <h:outputText value="#{appUserController.selected.appUserId}" title="#{bundle.ViewAppUserTitle_appUserId}"/>
+                        <h:outputText value="#{bundle.ViewAppUserLabel_userName}"/>
+                        <h:outputText value="#{appUserController.selected.userName}" title="#{bundle.ViewAppUserTitle_userName}"/>
+                        <h:outputText value="#{bundle.ViewAppUserLabel_password}"/>
+                        <h:outputText value="#{appUserController.selected.password}" title="#{bundle.ViewAppUserTitle_password}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="AppUserViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

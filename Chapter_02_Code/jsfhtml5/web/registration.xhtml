@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <head>
+        <title>Registration</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" type="text/css" href="css/styles.css"/>
+    </head>
+    <body>
+        <h3>Registration Page</h3>
+        <form jsf:id="mainForm" jsf:prependId="false">
+            <table border="0" cellspacing="0" cellpadding="0">
+                <tbody>
+                    <tr>
+                        <td class="rightalign">Salutation:</td>
+
+                        <td class="leftalign">
+                            <select name="salutation" jsf:id="salutation" jsf:value="#{registrationBean.salutation}" size="1">
+                                <f:selectItem itemValue="" itemLabel=""/>
+                                <f:selectItem itemValue="MR" itemLabel="Mr."/>
+                                <f:selectItem itemValue="MRS" itemLabel="Mrs."/>
+                                <f:selectItem itemLabel="Miss" itemValue="MISS"/>
+                                <f:selectItem itemLabel="Ms" itemValue="MS"/>
+                                <f:selectItem itemLabel="Dr." itemValue="DR"/>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="rightalign">
+                            First Name:
+                        </td>
+                        <td class="leftalign">
+                            <input type="text" jsf:id="firstName" jsf:value="#{registrationBean.firstName}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="rightalign">
+                            Last Name:
+                        </td>
+                        <td class="leftalign">
+                            <input type="text" jsf:id="lastName" jsf:value="#{registrationBean.lastName}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="rightalign">
+                            Age:
+                        </td>
+                        <td class="leftalign">
+                            <input type="number" jsf:id="age" jsf:value="#{registrationBean.age}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="rightalign">
+                            Email Address:
+                        </td>
+                        <td class="leftalign">
+                            <input type="text" jsf:id="email" jsf:value="#{registrationBean.email}" 
+                                   placeholder="username@example.com"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input type="submit" value="Submit" jsf:action="confirmation" /></td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </form>
+    </body>
+</html>

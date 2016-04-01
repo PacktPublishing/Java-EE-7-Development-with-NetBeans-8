@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <head jsf:id="head">
+        <title>WebSocket and Java EE</title>
+        <script language="javascript" type="text/javascript">
+            var wsUri = getRootUri() + "/WebSocketJavaEE/defaultdataendpoint";
+
+            function getRootUri() {
+                return "ws://" + (document.location.hostname == "" ? "localhost" : document.location.hostname) + ":" +
+                        (document.location.port == "" ? "8080" : document.location.port);
+            }
+
+            function init() {
+                websocket = new WebSocket(wsUri);
+                websocket.onopen = function (evt) {
+                    onOpen(evt)
+                };
+                websocket.onmessage = function (evt) {
+                    onMessage(evt)
+                };
+                websocket.onerror = function (evt) {
+                    onError(evt)
+                };
+            }
+
+            function onOpen(evt) {
+                console.log("CONNECTED");
+            }
+
+            function onMessage(evt) {
+                console.log("RECEIVED: " + evt.data);
+                
+                var json = JSON.parse(evt.data);
+                
+                document.getElementById('firstName').value=json.firstName;
+                document.getElementById('lastName').value=json.lastName;
+            }
+
+            function onError(evt) {
+                console.log('ERROR: ' + evt.data);
+            }
+
+            function doSend(message) {
+                console.log("SENT: " + message);
+                websocket.send(message);
+            }
+
+            window.addEventListener("load", init, false);
+
+        </script>
+
+    </head>
+    <body jsf:id="body">
+        <form method="POST" jsf:prependId="false">
+            <input type="button" value="Get Defaults" onclick="doSend('get_defaults')"/>
+            <table>
+                <tr>
+                    <td>First Name</td>
+                    <td>
+                        <input type="text" jsf:id="firstName" 
+                               jsf:value="#{person.firstName}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Last Name</td>
+                    <td>
+                        <input type="text" jsf:id="lastName" 
+                               jsf:value="#{person.lastName}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Submit" jsf:action="confirmation"/></td>
+                </tr>
+            </table>
+        </form>
+    </body>
+</html>

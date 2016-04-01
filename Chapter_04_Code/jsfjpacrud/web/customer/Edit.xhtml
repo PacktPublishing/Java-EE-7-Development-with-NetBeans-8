@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CustomerEditDlg" widgetVar="CustomerEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditCustomerTitle}">
+            <h:form id="CustomerEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{customerController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditCustomerLabel_customerId}" for="customerId" />
+                        <p:inputText id="customerId" value="#{customerController.selected.customerId}" title="#{bundle.EditCustomerTitle_customerId}" required="true" requiredMessage="#{bundle.EditCustomerRequiredMessage_customerId}"/>
+                        <p:outputLabel value="#{bundle.EditCustomerLabel_firstName}" for="firstName" />
+                        <p:inputText id="firstName" value="#{customerController.selected.firstName}" title="#{bundle.EditCustomerTitle_firstName}" />
+                        <p:outputLabel value="#{bundle.EditCustomerLabel_middleName}" for="middleName" />
+                        <p:inputText id="middleName" value="#{customerController.selected.middleName}" title="#{bundle.EditCustomerTitle_middleName}" />
+                        <p:outputLabel value="#{bundle.EditCustomerLabel_lastName}" for="lastName" />
+                        <p:inputText id="lastName" value="#{customerController.selected.lastName}" title="#{bundle.EditCustomerTitle_lastName}" />
+                        <p:outputLabel value="#{bundle.EditCustomerLabel_email}" for="email" />
+                        <p:inputText id="email" value="#{customerController.selected.email}" title="#{bundle.EditCustomerTitle_email}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{customerController.update}" value="#{bundle.Save}" update="display,:CustomerListForm:datalist,:growl" oncomplete="handleSubmit(args, 'CustomerEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CustomerEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

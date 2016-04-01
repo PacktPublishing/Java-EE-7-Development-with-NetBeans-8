@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Confirmation Page</title>
+        <h:outputStylesheet library="css" name="styles.css"/>
+    </h:head>
+    <h:body>
+        <h2>Confirmation Page</h2>
+        <h:panelGrid columns="2" 
+                     columnClasses="rightalign-bold,leftalign">
+            <h:outputText value="Salutation:"/>
+            ${registrationBean.salutation}
+            <h:outputText value="First Name:"/>
+            ${registrationBean.firstName}
+            <h:outputText value="Last Name:"/>
+            ${registrationBean.lastName}
+            <h:outputText value="Age:"/>
+            ${registrationBean.age}
+            <h:outputText value="Email Address:"/>
+            ${registrationBean.email}
+        </h:panelGrid>
+    </h:body>
+</html>
+

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AddressTypeViewDlg" widgetVar="AddressTypeViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewAddressTypeTitle}">
+            <h:form id="AddressTypeViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{addressTypeController.selected != null}">
+                        <h:outputText value="#{bundle.ViewAddressTypeLabel_addressTypeId}"/>
+                        <h:outputText value="#{addressTypeController.selected.addressTypeId}" title="#{bundle.ViewAddressTypeTitle_addressTypeId}"/>
+                        <h:outputText value="#{bundle.ViewAddressTypeLabel_addressTypeCode}"/>
+                        <h:outputText value="#{addressTypeController.selected.addressTypeCode}" title="#{bundle.ViewAddressTypeTitle_addressTypeCode}"/>
+                        <h:outputText value="#{bundle.ViewAddressTypeLabel_addressTypeText}"/>
+                        <h:outputText value="#{addressTypeController.selected.addressTypeText}" title="#{bundle.ViewAddressTypeTitle_addressTypeText}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="AddressTypeViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

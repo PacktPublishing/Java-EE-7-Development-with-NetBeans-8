@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UsCityViewDlg" widgetVar="UsCityViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewUsCityTitle}">
+            <h:form id="UsCityViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{usCityController.selected != null}">
+                        <h:outputText value="#{bundle.ViewUsCityLabel_usCityId}"/>
+                        <h:outputText value="#{usCityController.selected.usCityId}" title="#{bundle.ViewUsCityTitle_usCityId}"/>
+                        <h:outputText value="#{bundle.ViewUsCityLabel_usCityNm}"/>
+                        <h:outputText value="#{usCityController.selected.usCityNm}" title="#{bundle.ViewUsCityTitle_usCityNm}"/>
+                        <h:outputText value="#{bundle.ViewUsCityLabel_zip}"/>
+                        <h:outputText value="#{usCityController.selected.zip}" title="#{bundle.ViewUsCityTitle_zip}"/>
+                        <h:outputText value="#{bundle.ViewUsCityLabel_usState}"/>
+                        <h:outputText value="#{usCityController.selected.usState}" title="#{bundle.ViewUsCityTitle_usState}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="UsCityViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

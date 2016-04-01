@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Registration</title>
+    </h:head>
+    <h:body>
+         <h3>Registration Page (Continued)</h3>
+        <h:form>
+            <h:panelGrid columns="2">
+                <h:outputLabel for="line1" value="Line 1"/>
+                <h:inputText id="line1" value="#{registrationBean.line1}"/>
+                <h:outputLabel for="line2" value="Line 2"/>
+                <h:inputText id="line2" value="#{registrationBean.line2}"/>
+                <h:outputLabel for="city" value="City"/>
+                <h:inputText id="city" value="#{registrationBean.city}"/>
+                <h:outputLabel for="state" value="State"/>
+                <h:inputText id="state" value="#{registrationBean.state}" size="2" maxlength="2"/>
+                <h:outputLabel for="zip" value="Zip"/>
+                <h:inputText id="zip" value="#{registrationBean.zip}" size="5" maxlength="5"/>
+                <h:commandButton id="back" value="Go Back"
+                                 action="registration" />
+                <h:commandButton id="continue" value="Continue"
+                                 action="registration-confirmation" />
+            </h:panelGrid>
+        </h:form>
+    </h:body>
+</html>
+
